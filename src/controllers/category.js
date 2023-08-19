@@ -18,4 +18,9 @@ const createCategory = async (request, response) => {
   }
 }
 
-module.exports = { createCategory }
+const getCategories = async (request, response) => {
+  const categories = await knex('categories')
+  return response.status(200).json({ message: categories })
+}
+
+module.exports = { createCategory, getCategories }

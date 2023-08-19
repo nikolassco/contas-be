@@ -22,7 +22,10 @@ create table accounts (
 	id serial primary key,
 	user_id integer references users(id),
 	category_id integer references categories(id),
-	title text not null,
-	post text not null,
+	description text not null,
+	value numeric(15) not null,
+	due_date date not null,
+	installment integer not null,
+	status VARCHAR(10) CHECK (status IN ('pago', 'pendente')) NOT NULL,
 	created_at TIMESTAMPTZ DEFAULT Now()
 );
