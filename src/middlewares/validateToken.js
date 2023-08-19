@@ -28,4 +28,4 @@ const verifyJwt = async (req, res, next) => {
   }
 }
 
-module.exports = verifyJwt;
+module.exports = verifyJwt

@@ -53,7 +53,7 @@ const loginUser = async (request, response) => {
 
     return response.status(200).json({ message: { user: userLogged, token } })
   } catch (error) {
-    // response.status(500).json({ message: error })
+    response.status(500).json({ message: error })
   }
 }
 
