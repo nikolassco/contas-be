@@ -18,9 +18,18 @@ const createCategory = async (request, response) => {
   }
 }
 
-const getCategories = async (request, response) => {
-  const categories = await knex('categories')
-  return response.status(200).json({ message: categories })
+const getCategories = async (_, response) => {
+  try {
+    const categories = await knex('categories')
+
+    if (categories.length < 1) {
+      return response.status(404).json({ message: 'Nenhuma categoria encontrada.' })
+    }
+
+    return response.status(200).json({ message: categories })
+  } catch (error) {
+    response.status(500).json({ message: error })
+  }
 }
 
 module.exports = { createCategory, getCategories }
