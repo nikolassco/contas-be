@@ -1,8 +1,10 @@
 const express = require('express')
+const { createAccount } = require('./controllers/account')
 const { createCategory, getCategories } = require('./controllers/category')
 const { registerUser, loginUser, getUser } = require('./controllers/user')
 const validateSchema = require('./middlewares/validateSchema')
 const verifyJwt = require('./middlewares/validateToken')
+const createAccountSchema = require('./schema/createAccountSchema')
 const createCategorySchema = require('./schema/createCategorySchema')
 const createUserSchema = require('./schema/createUserSchema')
 const loginUserSchema = require('./schema/loginUserSchema')
@@ -23,5 +25,7 @@ routes.get('/user', getUser)
 
 routes.post('/category', validateSchema(createCategorySchema), createCategory)
 routes.get('/categories', getCategories)
+
+routes.post('/account', validateSchema(createAccountSchema), createAccount)
 
 module.exports = routes
